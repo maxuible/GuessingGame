@@ -11,12 +11,12 @@
     outline-style: solid;
     outline-width: 2px;
     /* outline-color: blueviolet; */
-
+    font-family: 'Courier New', Courier, monospace;
 }
 
 .row{
     display: grid;
-
+    
     grid-template-columns: repeat(5,60px);
 }
 
