@@ -19,14 +19,7 @@
     font-size: xx-large;
     grid-template-columns: repeat(5,60px);
 }
-.nav{
-    float: left;
-    
-    height: 100vh;
-    width: 200px;
 
-    border-style: solid;
-}
 
 body{
     font-family: 'Courier New', Courier, monospace;
