@@ -30,3 +30,7 @@ body{
 .main{
     margin-left: 220px;
 }
+
+#Error{
+    outline-style: groove;
+}
