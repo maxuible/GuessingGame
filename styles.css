@@ -1,5 +1,4 @@
 .square {
-
     height: 50px;
     width: 50px;
     background-color: grey;
@@ -10,8 +9,6 @@
     line-height: 50px;
     outline-style: solid;
     outline-width: 2px;
-
-    
 }
 
 .row{
@@ -20,7 +17,6 @@
     grid-template-columns: repeat(5,60px);
 }
 
-
 body{
     font-family: 'Courier New', Courier, monospace;
     background-color:#dadada;
@@ -28,9 +24,10 @@ body{
 }
 
 .main{
-    margin-left: 220px;
+    margin-left: 20em;
 }
 
 #Error{
     outline-style: groove;
+    width: fit-content;
 }

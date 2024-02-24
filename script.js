@@ -1,14 +1,15 @@
-let input = ''
-let puzzle = ''
-let guessNumber = 0
-let response = ''
+let input = '';
+let puzzle = '';
+let guessNumber = 0;
+let response = '';
 
 generatePuzzle()
 
 function generatePuzzle() {
-    puzzle = ''
+    puzzle = '';
+    input = '';
     while (puzzle.length < 5) {
-        puzzle += String.fromCharCode(Math.floor(Math.random() * 5 + 65))
+        puzzle += String.fromCharCode(Math.floor(Math.random() * 5 + 65));
     }
 
     if (guessNumber > 0) {
@@ -16,41 +17,24 @@ function generatePuzzle() {
             let row = '' + i
             for (let j = 0; j < 5; j++) {
                 let rowcol = row + j
-                this.document.getElementById(rowcol).innerHTML = '?'
-                this.document.getElementById(rowcol).style.backgroundColor = 'grey'
+                this.document.getElementById(rowcol).innerHTML = '?';
+                this.document.getElementById(rowcol).style.backgroundColor = 'grey';
             }
         }
     }
-
-    guessNumber = 0
-    input = ''
+    console.log(puzzle);
+    guessNumber = 0;
+    input = '';
 }
-
 
 window.addEventListener('keydown', function (e) {
 
     if (input.length < 5) {
-
-        if (e.key === 'a') {
-            input += e.key
-        }
-
-        if (e.key === 'b') {
-            input += e.key
-        }
-
-        if (e.key === 'c') {
-            input += e.key
-        }
-
-        if (e.key === 'd') {
-            input += e.key
-        }
-
-        if (e.key === 'e') {
-            input += e.key
-        }
-
+        if (e.key === 'a') {input += e.key;}
+        if (e.key === 'b') {input += e.key;}
+        if (e.key === 'c') {input += e.key;}
+        if (e.key === 'd') {input += e.key;}
+        if (e.key === 'e') {input += e.key;}
     }
     if (e.key === 'f' && input.length === 5) {
         guess(input);
@@ -59,31 +43,31 @@ window.addEventListener('keydown', function (e) {
         input = input.slice(0, -1);
     }
 
-    update()
+    update();
 }, false);
 
 function update() {
 
-    let currentRow = '' + guessNumber
+    let currentRow = '' + guessNumber;
 
     if (guessNumber > 5) {
         //only 5 guesses allowed
+        this.document.getElementById("Error").innerHTML = "You used all your guesses. Please try again.";
         return -1;
     }
-
+    
     for (let i = 0; i < 5; i++) {
-
-        let currentRowCol = currentRow + i
-        this.document.getElementById(currentRowCol).innerHTML = input[i]
+        let currentRowCol = currentRow + i;
+        this.document.getElementById(currentRowCol).innerHTML = input[i];
         if (this.document.getElementById(currentRowCol).innerHTML == 'undefined') { //fixes undefined
-            this.document.getElementById(currentRowCol).innerHTML = '?'
+            this.document.getElementById(currentRowCol).innerHTML = '?';
 
         }
         //top most bar
-        let userInput = '-1' + i
-        this.document.getElementById(userInput).innerHTML = input[i]
+        let userInput = '-1' + i;
+        this.document.getElementById(userInput).innerHTML = input[i];
         if (this.document.getElementById(userInput).innerHTML == 'undefined') { //fixes undefined
-            this.document.getElementById(userInput).innerHTML = '?'
+            this.document.getElementById(userInput).innerHTML = '?';
 
         }
 
@@ -92,23 +76,20 @@ function update() {
 }
 
 function guess(guessInput) {
-    response = ''
-    guessInput = guessInput.toUpperCase()
-
-    if (guessInput === puzzle) {
-        return 1;
-    }
+    response = '';
+    guessInput = guessInput.toUpperCase();
 
     if (guessNumber > 5) {
+        this.document.getElementById("Error").innerHTML = "You used all your guesses. Please try again.";
         return -1;
     }
 
-    let currentRow = '' + guessNumber
+    let currentRow = '' + guessNumber;
     for (let i = 0; i < guessInput.length; i++) {
-        let currentRowCol = currentRow + i
-        if (guessInput[i] == puzzle[i]) 
+        let currentRowCol = currentRow + i;
+        if (guessInput[i] == puzzle[i])
         {
-            this.document.getElementById(currentRowCol).style.backgroundColor = 'green'
+            this.document.getElementById(currentRowCol).style.backgroundColor = 'green';
         }
         else if (puzzle.includes(guessInput[i])) 
         {
@@ -120,8 +101,13 @@ function guess(guessInput) {
     }
 
     for (let i = 0; i < 5; i++) {
-        let colum = '-1' + i
-        this.document.getElementById(colum).innerHTML = '?'
+        let colum = '-1' + i;
+        this.document.getElementById(colum).innerHTML = '?';
+    }
+
+    if (guessInput === puzzle) {
+        this.document.getElementById("Error").innerHTML = "You Guessed correctly! Please generate new puzzle to play again.";
+        return 1;
     }
 
     guessNumber++;
